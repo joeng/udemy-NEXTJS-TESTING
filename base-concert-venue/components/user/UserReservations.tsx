@@ -19,6 +19,10 @@ const getUserReservations = async (
     { data: { userReservations: Array<ReservationWithShow> } }
   >(`/api/${routes.users}/${userId}/reservations`);
 
+
+  console.log("data.data.userReservations");
+  console.log(data.data.userReservations);
+
   return data.data.userReservations;
 };
 
@@ -30,6 +34,7 @@ export const UserReservations = ({ userId }: { userId: number }) => {
   } = useSWR(`user/${userId}/reservations`, () => getUserReservations(userId), {
     fallbackData: [],
   });
+
 
   if (error)
     return (
